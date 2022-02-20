@@ -64,7 +64,7 @@ const WeatherInfo: FC<any> = () => {
   ]
 
   return weatherInfoLoaded ? (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} data-testid="weatherInfo">
       {cardDataArray.map((cardData: CardData, i) => <Grid key={i} item xs={12} sm={6}>
         <Card variant="outlined" 
           sx={{

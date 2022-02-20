@@ -3,7 +3,7 @@ import { Card, CardContent, Skeleton } from "@mui/material";
 
 const CardSkeleton: FC<any> = () => {
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" data-testid="cardSkeleton">
       <CardContent sx={{
         display: 'flex',
         alignItems: 'center',

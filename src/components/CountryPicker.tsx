@@ -14,11 +14,10 @@ const CountryPicker: FC<any> = () => {
   }, []);
 
   return countryListLoaded ? (
-    <FormControl fullWidth>
+    <FormControl fullWidth data-testid="countryPicker">
       <FormGroup row>
         <Autocomplete
           sx={{ flex: 1}}
-          id="demo-simple-select"
           renderOption={(props, option) => (
             <Box component="li" {...props}>
               {option.name}
