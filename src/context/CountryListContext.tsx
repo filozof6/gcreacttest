@@ -1,18 +1,18 @@
-import axios from 'axios'
-import React, { ReactNode, useContext, useState } from 'react'
+import axios from 'axios';
+import React, { ReactNode, useContext, useState } from 'react';
 import { SnackBarContext } from './SnackBarContext';
 
 export type Country = {
-  name: string; 
+  name: string;
   latLon: [number, number];
-}
+};
 
 type CountryListContextType = {
-  fetchCountryList: () => Promise<void>,
-  countryList: Country[],
-  countryListLoading: boolean,
-  countryListLoaded: boolean,
-}
+  fetchCountryList: () => Promise<void>;
+  countryList: Country[];
+  countryListLoading: boolean;
+  countryListLoaded: boolean;
+};
 
 export const CountryListContext = React.createContext<CountryListContextType>({
   fetchCountryList: async () => undefined,
@@ -35,19 +35,24 @@ export function CountryListContextProvider({ children }: { children: ReactNode }
       loaded = false;
     });
     if (result?.data) {
-      setCountryList(result.data.map((row: any) => ({
-        name: row.name.common, 
-        latLon: row.latlng,
-      })));
+      setCountryList(
+        result.data.map((row: any) => ({
+          name: row.name.common,
+          latLon: row.latlng,
+        })),
+      );
     } else {
       setCountryList([]);
     }
     setCountryListLoading(false);
     setCountryListLoaded(loaded);
-  }
+  };
 
-  const Provider = CountryListContext.Provider
+  const Provider = CountryListContext.Provider;
 
-  return <Provider value={{ fetchCountryList, countryList, countryListLoading, countryListLoaded }}>{children}</Provider>
+  return (
+    <Provider value={{ fetchCountryList, countryList, countryListLoading, countryListLoaded }}>
+      {children}
+    </Provider>
+  );
 }
-

@@ -7,10 +7,10 @@ test('renders country picker', async () => {
   render(
     <CountryListContextProvider>
       <CountryPicker />
-    </CountryListContextProvider>
+    </CountryListContextProvider>,
   );
   await waitFor(() => {
     const element = screen.getByTestId('countryPicker');
     expect(element).toBeInTheDocument();
-  })
+  });
 });

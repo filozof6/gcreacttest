@@ -1,5 +1,13 @@
-import { FC, useContext, useEffect, useState } from 'react'
-import {Autocomplete, Box, Button, CircularProgress, FormControl, FormGroup, TextField } from '@mui/material'
+import { FC, useContext, useEffect, useState } from 'react';
+import {
+  Autocomplete,
+  Box,
+  Button,
+  CircularProgress,
+  FormControl,
+  FormGroup,
+  TextField,
+} from '@mui/material';
 import { Country, CountryListContext } from '../context/CountryListContext';
 import { WeatherInfoContext } from '../context/WeatherInfoContext';
 import { Refresh } from '@mui/icons-material';
@@ -7,7 +15,7 @@ import { Refresh } from '@mui/icons-material';
 const CountryPicker: FC<any> = () => {
   const { fetchCountryList, countryList, countryListLoaded } = useContext(CountryListContext);
   const { fetchWeatherInfo, resetWeatherInfo, weatherInfoLoading } = useContext(WeatherInfoContext);
-  const [ country, setCountry ] = useState<Country|null>(null);
+  const [country, setCountry] = useState<Country | null>(null);
 
   useEffect(() => {
     fetchCountryList();
@@ -17,7 +25,7 @@ const CountryPicker: FC<any> = () => {
     <FormControl fullWidth data-testid="countryPicker">
       <FormGroup row>
         <Autocomplete
-          sx={{ flex: 1}}
+          sx={{ flex: 1 }}
           renderOption={(props, option) => (
             <Box component="li" {...props}>
               {option.name}
@@ -30,7 +38,7 @@ const CountryPicker: FC<any> = () => {
           onChange={(event, value) => {
             if (value !== null) {
               const selectedCountry: Country = value;
-              setCountry(selectedCountry)
+              setCountry(selectedCountry);
               fetchWeatherInfo(selectedCountry.latLon[0], selectedCountry.latLon[1]);
             } else {
               setCountry(null);
@@ -38,16 +46,23 @@ const CountryPicker: FC<any> = () => {
             }
           }}
         />
-        <Button sx={{ width: '10%'}} variant="outlined" disabled={country===null} onClick={() => {
-          if (country !== null) {
-            fetchWeatherInfo(country.latLon[0], country.latLon[1]);
-          }
-        }}>
-          {weatherInfoLoading ? <CircularProgress /> : <Refresh /> }
+        <Button
+          sx={{ width: '10%' }}
+          variant="outlined"
+          disabled={country === null}
+          onClick={() => {
+            if (country !== null) {
+              fetchWeatherInfo(country.latLon[0], country.latLon[1]);
+            }
+          }}
+        >
+          {weatherInfoLoading ? <CircularProgress /> : <Refresh />}
         </Button>
       </FormGroup>
     </FormControl>
-  ) : (<></>)
-}
+  ) : (
+    <></>
+  );
+};
 
-export default CountryPicker
+export default CountryPicker;

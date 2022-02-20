@@ -1,14 +1,13 @@
 import { AlertColor } from '@mui/material';
-import React, { ReactNode } from 'react'
-
+import React, { ReactNode } from 'react';
 
 type SnackBarContextType = {
-  sendMessage: (message: string, messageSeverity: AlertColor) => void,
-  closeSnackBar: () => void,
-  message: string,
-  open: boolean,
-  severity: AlertColor,
-}
+  sendMessage: (message: string, messageSeverity: AlertColor) => void;
+  closeSnackBar: () => void;
+  message: string;
+  open: boolean;
+  severity: AlertColor;
+};
 
 export const SnackBarContext = React.createContext<SnackBarContextType>({
   sendMessage: () => undefined,
@@ -27,14 +26,15 @@ export function SnackBarContextProvider({ children }: { children: ReactNode }) {
     setMessage(message);
     setSeverity(messageSeverity);
     setOpen(true);
-    setTimeout(() => setOpen(false), 6000)
-  }
+    setTimeout(() => setOpen(false), 6000);
+  };
   const closeSnackBar = () => {
     setOpen(false);
-  }
+  };
 
-  const Provider = SnackBarContext.Provider
+  const Provider = SnackBarContext.Provider;
 
-  return <Provider value={{ sendMessage, closeSnackBar, message, open, severity }}>{children}</Provider>
+  return (
+    <Provider value={{ sendMessage, closeSnackBar, message, open, severity }}>{children}</Provider>
+  );
 }
-
