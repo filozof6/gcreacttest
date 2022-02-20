@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CountryPicker from './components/CountryPicker';
+import WeatherInfo from './components/WeatherInfo';
+import { Container } from '@mui/material';
+import PositionedSnackbar from './components/SnackBar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+        <CountryPicker />
+        <hr />
+        <WeatherInfo />
+        <PositionedSnackbar />
+      </Container>
     </div>
   );
 }
